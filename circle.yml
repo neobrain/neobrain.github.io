@@ -8,7 +8,6 @@ dependencies:
   override:
     - stack setup
     - stack install hakyll
-    - stack build
 
 test:
   override:
