@@ -5,8 +5,6 @@ machine:
 dependencies:
   cache_directories:
     - "~/.stack"
-  pre:
-    - wget -qO- https://get.haskellstack.org/ | sh
   override:
     - stack setup
 
