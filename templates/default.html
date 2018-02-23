@@ -45,15 +45,21 @@
         </nav></header>
 
         <main role="main">
+          <article>
             <div class="m-container m-container-inflatable">
                 <div class="m-row">
                     <div class="m-col-l-10 m-push-l-1">
-                        <!-- content -->
-                        <h1>$title$</h1>
-                        $body$                        <!-- /content -->
+                      <!-- content -->
+                      $if(render_custom_title)$
+                      $else$
+                      <h1>$title$</h1>
+                      $endif$
+                      $body$
+                      <!-- /content -->
                     </div>
                 </div>
             </div>
+          </article>
         </main>
         <footer><nav>
             <div class="m-container m-container-inflatable">
