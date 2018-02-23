@@ -24,7 +24,7 @@
     DEALINGS IN THE SOFTWARE.
 */
 
-*, ::before, ::after { box-sizing: border-box; }
+*, ::before, ::after { box-sizing: border-box; visibility:visible }
 body { margin: 0; }
 .m-container {
   width: 100%;
