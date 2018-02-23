@@ -1,0 +1,27 @@
+<div class="m-row m-note $$if(is_toplevel)$$m-default$$else$$m-info$$endif$$">
+  <div class="m-col-l-12">
+    <div style="display:flex; flex-direction:row; padding-bottom: 1rem; align-items: center;">
+      <div>
+        $if(gravatar_url)$
+          <img src="$gravatar_url$" alt="Gravatar avatar" style="object-fit:cover; float:left; margin-right:1rem" />
+        $endif$
+      </div>
+      <div style="flex: 1 0 auto"> <!-- TODO: The flexbox breaks word-wrap :( -->
+        <div id="comment$comment_id$">$name$ on $date$<span style="float:right;"><a href="#comment$comment_id$">#$$comment_index$$</a></span></div>
+        <hr style="width:100%">
+      </div>
+    </div>
+    <p style="margin-bottom: 0%">
+      $body$
+    </p>
+    $$if(child_comments)$$
+      <div class="m-row">
+        <div class="m-col-l-11 m-push-l-1" style="padding-right:0px;padding-bottom:0px">
+          $$for(child_comments)$$
+            $$body$$
+          $$endfor$$
+        </div>
+      </div>
+    $$endif$$
+  </div>
+</div>
