@@ -5,6 +5,8 @@ author: Tony Wasserka
 
 Hi there! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet felis diam, eu porta sapien posuere id. Duis magna velit, auctor non eleifend vitae, efficitur eget nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus quis purus ac lectus dapibus aliquam. Ut sollicitudin dictum fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae lobortis diam. Etiam pharetra tempor tellus vel tristique. Sed cursus in risus quis vulputate.
 
+<!--more-->
+
 <aside class="m-note m-primary">
 Primary highlighting!
 </aside>
@@ -17,7 +19,7 @@ Ut massa eros, sollicitudin ac elit ut, tempor sagittis ante. Etiam non mauris q
 I am an info box!
 </aside>
 
-Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris volutpat nisi eros, eu ornare ligula lobortis quis. Nunc non feugiat libero. Curabitur ac tellus porta, porttitor erat vehicula, consectetur mi. Praesent pretium turpis id nibh placerat viverra. In iaculis dui ut placerat fermentum. Nam ante mauris, sollicitudin a aliquet vel, aliquam id purus. 
+Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris volutpat nisi eros, eu ornare ligula lobortis quis. Nunc non feugiat libero. Curabitur ac tellus porta, porttitor erat vehicula, consectetur mi. Praesent pretium turpis id nibh placerat viverra. In iaculis dui ut placerat fermentum. Nam ante mauris, sollicitudin a aliquet vel, aliquam id purus.
 
 <aside class="m-note m-warning">
 I am a warning box!

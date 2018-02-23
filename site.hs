@@ -24,9 +24,11 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
-            >>= relativizeUrls
+                >>= saveSnapshot "content" -- save snapshot for teaser text
+                >>= loadAndApplyTemplate "templates/post.html"    fullCtx -- TODO: May need to split off comments now...
+                >>= saveSnapshot "content"
+                >>= loadAndApplyTemplate "templates/default.html" fullCtx
+                >>= relativizeUrls
 
     create ["archive.html"] $ do
         route idRoute
@@ -48,7 +50,7 @@ main = hakyll $ do
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
+                    listField "posts" (postCtx `mappend` teaserField "teaser" "content") (return posts) `mappend`
                     constField "title" "Blog"                `mappend`
                     defaultContext
 

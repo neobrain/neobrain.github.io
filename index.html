@@ -8,14 +8,18 @@ render_custom_title: true
     <!-- TODO: Adapt image size to screen size class (tiny, medium, large, etc) -->
     <img src="/images/glitchedcube.png" style="float: right; margin-left: 2%; margin-top: 3%; object-fit:cover; width:15%" />
     <h1>$title$</h1>
+    <p>Welcome to my blog! If you're reading this, you must be keeping quite the eager eye on my GitHub profile - have some patience, I barely put this site up and still work on getting things set up :)</p>
   </div>
 </div>
 <hr>
 
-<p>Welcome to my blog! If you're reading this, you must be keeping quite the eager eye on my GitHub profile - have some patience, I barely put this site up and still work on getting things set up :)</p>
-
-<p>List of recent blog posts:</p>
-
-$partial("templates/post-list.html")$
+$for(posts)$
+<section>
+    <h2><a href="$url$">$title$</a></h2>
+    $teaser$
+    <a href="$url$" style="text-decoration:none">&#10142; Read more&#8230;</a>
+    <hr>
+</section>
+$endfor$
 
 <p>…or you can find more in the <a href="/archive.html">archives</a>.</p>
