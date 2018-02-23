@@ -171,9 +171,25 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "templates/blog_comment.html" commentCtx
         >>= relativizeUrls
 
+    create ["feed.rss"] $ do
+      route idRoute
+      compile $ do
+        let feedContext = postCtx `mappend`
+                          bodyField "description"
+        posts <- loadAllSnapshots "posts/*" "content"
+        -- TODO: Include talks in the feed as well
+        renderRss rssFeedConfiguration feedContext posts
 
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+rssFeedConfiguration = FeedConfiguration
+  { feedTitle = "neobrain.github.io"
+  , feedDescription = "neobrain's blog"
+  , feedAuthorName = "Tony Wasserka"
+  , feedAuthorEmail = ""
+  , feedRoot = "https://neobrain.github.io"
+  }
