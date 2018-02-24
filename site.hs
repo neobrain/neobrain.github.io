@@ -25,9 +25,9 @@ main = hakyll $ do
         route $ setExtension "html"
         compile $ pandocCompiler
                 >>= saveSnapshot "content" -- save snapshot for teaser text
-                >>= loadAndApplyTemplate "templates/post.html"    fullCtx -- TODO: May need to split off comments now...
+                >>= loadAndApplyTemplate "templates/post.html"    postCtx
                 >>= saveSnapshot "content"
-                >>= loadAndApplyTemplate "templates/default.html" fullCtx
+                >>= loadAndApplyTemplate "templates/default.html" postCtx
                 >>= relativizeUrls
 
     create ["archive.html"] $ do
