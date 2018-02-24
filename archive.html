@@ -5,13 +5,23 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tony Wasserka - Archives</title>
+        <!-- TODO: not sure this is what we want... after all, it hides the content until 53 kb of css have been downloaded -->
+        <!-- TODO: This seems to be an issue with GitHub pages: they set the max-age HTML header field to zero for css files... -->
+        <!-- minimal variant of the stylesheet to reduce flashing during page load -->
+        <style>
+        * { visibility : hidden }
+        body { background-color:#2f363f; visibility : visible }
+        header { background-color:#22272e; visibility : visible }
+        footer { background-color:#444e5c; visibility : visible }
+        textarea, input { border-radius:0.2rem; background-color:#34424d; color:#dcdcdc; font-family:inherit; font-size:inherit; font-size:1.0rem }
+        </style>
         <link rel="stylesheet" href="./css/default.css" />
         <link rel="stylesheet" href="./css/cppsyntax.css" />
         <meta name="theme-color" content="#22272e" />
     </head>
-    <body bgcolor="#2f363f"> <!-- set bgcolor to make page transitions prettier on the eye-->
+    <body> <!-- set bgcolor to make page transitions prettier on the eye (i.e. prevent flashing) -->
         <header><nav id="navigation">
-            <div class="m-container">
+            <div style="background-color:#22272e" class="m-container">
                 <div class="m-row">
                     <div class="m-col-l-1 m-hide-t m-show-l">&nbsp;</div>
                     <a id="m-navbar-show" href="#navigation" title="Show navigation" class="m-col-t-1 m-hide-m m-text-left">☰</a>
