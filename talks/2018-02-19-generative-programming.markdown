@@ -4,10 +4,8 @@ url: https://skillsmatter.com/skillscasts/11505-generative-programming-in-action
 location: "C++::London"
 ---
 
-Console emulation needs to stem the difficult balance between optimizing code for stable frame rates and maintaining the complex logic required to emulate the given hardware - any sub
-tle bug in this system easily manifests in a user-visible glitch. How can modern C++ help?
+Console emulation needs to stem the difficult balance between optimizing code for stable frame rates and maintaining the complex logic required to emulate the given hardware - any subtle bug in this system easily manifests in a user-visible glitch. How can modern C++ help?
 
-Using the toolbox of generative programming, we take a look at the system call interface of the 3DS and see how far variadic templates, function reflection, and some metaprogramming w
-ill get us in terms of bridging the gap between performance, maintainability, and correctness.
+Using the toolbox of generative programming, we take a look at the system call interface of the 3DS and see how far variadic templates, function reflection, and some metaprogramming will get us in terms of bridging the gap between performance, maintainability, and correctness.
 
 This is a beginner-friendly talk - prior knowledge of metaprogramming is not required!
