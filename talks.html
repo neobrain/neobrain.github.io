@@ -2,4 +2,15 @@
 title: Talks I've given
 ---
 
-To be written.
+$for(talks)$
+    <section class="header">
+        <h2><a href="$url$" target="_blank">$title$</a></h2>
+        <i><div class="m-text m-dim m-text-left">
+            $location$, $date$
+        </div></i>
+    </section>
+
+    <section>
+        <p>$body$</p>
+    </section>
+$endfor$

@@ -30,6 +30,15 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" postCtx
                 >>= relativizeUrls
 
+    match "talks/*markdown" $ do
+        route $ setExtension "html"
+        compile $
+            do
+              let fullCtx = postCtx
+
+              pandocCompiler
+                >>= relativizeUrls
+
     create ["archive.html"] $ do
         route idRoute
         compile $ do
@@ -72,7 +81,10 @@ main = hakyll $ do
     match "talks.html" $ do
         route idRoute
         compile $ do
-            let pageCtx = defaultContext
+            posts <- recentFirst =<< loadAll "talks/*"
+            let pageCtx =
+                    listField "talks" postCtx (return posts) `mappend`
+                    defaultContext
 
             getResourceBody
                 >>= applyAsTemplate pageCtx
