@@ -59,6 +59,26 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
 
+    match "resume.html" $ do
+        route idRoute
+        compile $ do
+            let pageCtx = defaultContext
+
+            getResourceBody
+                >>= applyAsTemplate pageCtx
+                >>= loadAndApplyTemplate "templates/default.html" pageCtx
+                >>= relativizeUrls
+
+    match "talks.html" $ do
+        route idRoute
+        compile $ do
+            let pageCtx = defaultContext
+
+            getResourceBody
+                >>= applyAsTemplate pageCtx
+                >>= loadAndApplyTemplate "templates/default.html" pageCtx
+                >>= relativizeUrls
+
     match "templates/*" $ compile templateBodyCompiler
 
 
