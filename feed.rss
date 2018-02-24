@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>neobrain.github.io</title>
+        <link>https://neobrain.github.io</link>
+        <description><![CDATA[neobrain's blog]]></description>
+        <atom:link href="https://neobrain.github.io/feed.rss" rel="self"
+                   type="application/rss+xml" />
+        <lastBuildDate>Sat, 04 Nov 2017 00:00:00 UT</lastBuildDate>
+        <item>
+    <title>Hello World</title>
+    <link>https://neobrain.github.io/posts/2017-11-04-hello-world.html</link>
+    <description><![CDATA[<article>
+    <section class="header">
+        <i><div class="m-text m-dim m-text-left">
+            Posted on November  4, 2017
+            <span style="float:right;"><a href="/posts/2017-11-04-hello-world.html#comments">0 comments</a></span>
+        </div></i>
+    </section>
+    <section>
+      <p>Hi there! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet felis diam, eu porta sapien posuere id. Duis magna velit, auctor non eleifend vitae, efficitur eget nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus quis purus ac lectus dapibus aliquam. Ut sollicitudin dictum fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae lobortis diam. Etiam pharetra tempor tellus vel tristique. Sed cursus in risus quis vulputate.</p>
+<!--more-->
+<aside class="m-note m-primary">
+Primary highlighting!
+</aside>
+<h2 id="overview">Overview</h2>
+<p>Ut massa eros, sollicitudin ac elit ut, tempor sagittis ante. Etiam non mauris quis metus ornare aliquam. Duis non sodales ligula. Sed vehicula in diam ac ultricies. Sed elementum, massa in blandit sodales, ex ante eleifend lacus, rhoncus feugiat augue libero in ex. Sed eleifend mollis faucibus. Nunc sit amet tempus leo. Vestibulum maximus ante nec efficitur semper. Donec dictum tellus in dui ultricies, in tincidunt augue semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sodales, odio sed cursus hendrerit, justo lectus feugiat libero, in ultrices sem sem non massa. Proin quis urna lacinia, fermentum libero sed, sagittis nisl. Donec eu nisi et libero tincidunt consequat et in elit.</p>
+<aside class="m-note m-info">
+I am an info box!
+</aside>
+<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris volutpat nisi eros, eu ornare ligula lobortis quis. Nunc non feugiat libero. Curabitur ac tellus porta, porttitor erat vehicula, consectetur mi. Praesent pretium turpis id nibh placerat viverra. In iaculis dui ut placerat fermentum. Nam ante mauris, sollicitudin a aliquet vel, aliquam id purus.</p>
+<aside class="m-note m-warning">
+I am a warning box!
+</aside>
+<h2 id="the-gist-of-it">The gist of it</h2>
+<p>Some C++ code:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main() {
+	<span class="kw">auto</span> x = []() {
+		<span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Hello World&quot;</span> &lt;&lt; <span class="bu">std::</span>endl;
+	};
+	x();
+	<span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>And some bash:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="ex">stack</span> install hakyll</code></pre></div>
+    </section>
+    <hr style="width:100%"/>
+    <section>
+      <h3 id="comments">0 comments</h3>
+      
+    </section>
+    <section>
+      <div class="m-row">
+        <div class="m-col-l-10 m-push-l-1 m-frame">
+          <h3>Leave a comment&#8230;</h3>
+          <form method="POST" action="#">
+            <label><textarea disabled placeholder="Comment system is in the works - stay tuned!" name="fields[message]" style="width:100%; height:10rem"></textarea></label>
+            <div class="m-row">
+              <div class="m-col-s-12 m-col-m-6 m-text-center">
+                <label>Name:&nbsp;&nbsp;&nbsp;&nbsp;<input disabled name="fields[name]" type="text" style="width:70%"></label>
+              </div>
+              <div class="m-col-s-12 m-col-m-6 m-text-center">
+                <label>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;<input disabled name="fields[email]" type="email" style="width:70%"></label>
+              </div>
+              <div class="m-col-t-12 m-button m-primary">
+                <button disabled type="submit" class="m-button m-danger m-right-t">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+</article>
+]]></description>
+    <pubDate>Sat, 04 Nov 2017 00:00:00 UT</pubDate>
+    <guid>https://neobrain.github.io/posts/2017-11-04-hello-world.html</guid>
+    <dc:creator>Tony Wasserka</dc:creator>
+</item>
+
+    </channel>
+</rss>
