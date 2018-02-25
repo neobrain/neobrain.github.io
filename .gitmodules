@@ -1,0 +1,3 @@
+[submodule "talks/cpplondon_feb2018"]
+	path = talks/cpplondon_feb2018
+	url = https://github.com/neobrain/presentations/
