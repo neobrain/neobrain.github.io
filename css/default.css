@@ -3,7 +3,7 @@
 /*
     This file is part of m.css.
 
-    Copyright © 2017 Vladimír Vondruš <mosra@centrum.cz>
+    Copyright © 2017, 2018 Vladimír Vondruš <mosra@centrum.cz>
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -24,7 +24,7 @@
     DEALINGS IN THE SOFTWARE.
 */
 
-*, ::before, ::after { box-sizing: border-box; visibility:visible }
+*, ::before, ::after { box-sizing: border-box; }
 body { margin: 0; }
 .m-container {
   width: 100%;
@@ -36,7 +36,7 @@ body { margin: 0; }
   margin-left: -1rem;
   margin-right: -1rem;
 }
-.m-row:after { /* avoid rows floating around each other */
+.m-row:after {
   content: ' ';
   clear: both;
   display: table;
@@ -389,13 +389,12 @@ body { margin: 0; }
 
 html {
   font-size: 16px;
-  background-color: #444e5c;
+  background-color: #2f363f;
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
   color: #dcdcdc;
-  background-color: #2f363f;
 }
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
@@ -420,7 +419,7 @@ main p {
   text-indent: 1.5rem;
   text-align: justify;
 }
-main p.m-noindent {
+main p.m-noindent, li > p, dd > p, table.m-table td > p {
   text-indent: 0;
   text-align: left;
 }
@@ -445,16 +444,19 @@ pre {
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   color: #e6e6e6;
-  background-color: #34424d;
+  background-color: #282e36;
   border-radius: 0.2rem;
   overflow-x: auto;
-  margin-top: 0; /* stupid defaults */
+  margin-top: 0;
+}
+pre.m-console {
+  background-color: #000000;
 }
 abbr {
   cursor: help;
   text-decoration: underline dotted;
 }
-sub, sup { /* https://gist.github.com/unruthless/413930 */
+sub, sup {
   font-size: 0.75rem;
   line-height: 0;
   position: relative;
@@ -468,7 +470,8 @@ a {
 a:hover, a:focus, a:active {
   color: #a5c9ea;
 }
-a img { border: 0; } /* Why you so special, IE?! */
+a img { border: 0; }
+svg a { cursor: pointer; }
 mark {
   padding: 0.0625rem;
   background-color: #c7cf2f;
@@ -479,7 +482,10 @@ code {
   font-size: 0.9rem;
   padding: 0.125rem;
   color: #e6e6e6;
-  background-color: #34424d;
+  background-color: #282e36;
+}
+code.m-console {
+  background-color: #000000;
 }
 body > header > nav {
   width: 100%;
@@ -487,24 +493,24 @@ body > header > nav {
   min-height: 3rem;
 }
 body > header > nav.m-navbar-landing,
-body > header > nav.m-navbar-jumbo {
+body > header > nav.m-navbar-cover {
   background-color: transparent;
   position: relative;
 }
 body > header > nav.m-navbar-landing {
   opacity: 0.8;
 }
-body > header > nav.m-navbar-jumbo {
+body > header > nav.m-navbar-cover {
   background-color: rgba(34, 39, 46, 0.25);
   opacity: 1;
 }
 body > header > nav.m-navbar-landing:hover,
-body > header > nav.m-navbar-jumbo:hover {
+body > header > nav.m-navbar-cover:hover {
   background-color: rgba(34, 39, 46, 0.75);
   opacity: 1;
 }
 body> header > nav.m-navbar-landing:target,
-body> header > nav.m-navbar-jumbo:target {
+body> header > nav.m-navbar-cover:target {
   background-color: #22272e;
   opacity: 1;
 }
@@ -532,6 +538,12 @@ body > header > nav a#m-navbar-brand, body > header > nav a#m-navbar-show, body 
   font-weight: bold;
   font-size: 1.125rem;
   line-height: 3rem;
+}
+body > header > nav a#m-navbar-brand .m-thin {
+  font-weight: normal;
+}
+body > header > nav a#m-navbar-show:before, body > header > nav a#m-navbar-hide:before {
+  content:'\2630';
 }
 body > header > nav #m-navbar-collapse {
   padding-bottom: 1rem;
@@ -578,11 +590,11 @@ body > header > nav #m-navbar-collapse li a:active {
   background-color: #292f37;
 }
 body > header > nav.m-navbar-landing #m-navbar-collapse li a:hover,
-body > header > nav.m-navbar-jumbo #m-navbar-collapse li a:hover,
+body > header > nav.m-navbar-cover #m-navbar-collapse li a:hover,
 body > header > nav.m-navbar-landing #m-navbar-collapse li a:focus,
-body > header > nav.m-navbar-jumbo #m-navbar-collapse li a:focus,
+body > header > nav.m-navbar-cover #m-navbar-collapse li a:focus,
 body > header > nav.m-navbar-landing #m-navbar-collapse li a:active,
-body > header > nav.m-navbar-jumbo #m-navbar-collapse li a:active {
+body > header > nav.m-navbar-cover #m-navbar-collapse li a:active {
   background-color: rgba(41, 47, 55, 0.5);
 }
 body > header > nav #m-navbar-hide {
@@ -644,7 +656,6 @@ body > header > nav:target #m-navbar-hide {
     z-index: 99999;
     position: absolute;
     visibility: hidden;
-    min-width: 7.5rem;
   }
   body > header > nav #m-navbar-collapse li:hover ol {
     visibility: visible;
@@ -767,33 +778,36 @@ article h1 a, article > header h1 a, article section > h2 a, article section > h
 article section > h4 a, article section > h5 a, article section > h6 a {
   text-decoration: none;
 }
-#m-landing-image {
+#m-landing-image, #m-cover-image, article#m-jumbo > header #m-jumbo-image {
   background-size: cover;
-  background-color: #222222;
+  background-color: #0f1217;
   background-position: center center;
   background-repeat: no-repeat;
   margin-top: -4rem;
   padding-top: 5rem;
+}
+#m-landing-image {
   color: #ffffff;
 }
+#m-cover-image {
+  height: 30rem;
+  margin-bottom: -26rem;
+}
+#m-landing-cover h1 {
+  font-size: 2.8rem;
+  margin-top: -0.5rem;
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+  text-transform: lowercase;
+}
 #m-landing-cover {
-  padding-bottom: 4rem;
+  padding-bottom: 10rem;
+  margin-bottom: -6rem;
 }
 article#m-jumbo {
   margin-top: -1rem;
 }
-article#m-jumbo > header #m-jumbo-image {
-  background-size: cover;
-  background-color: #222222;
-  background-position: center center;
-  background-repeat: no-repeat;
-  font-size: 2.5vh;
-  height: 60vh;
-  margin-top: -4rem;
-  margin-bottom: 1rem;
-  padding-top: 5rem;
-}
-article#m-jumbo > header #m-jumbo-cover, #m-landing-cover {
+#m-landing-cover, #m-cover-image > div, article#m-jumbo > header #m-jumbo-cover {
   background: linear-gradient(transparent 0%, transparent 50%, #2f363f 100%);
   width: 100%;
   height: 100%;
@@ -802,14 +816,29 @@ article#m-jumbo > header h1, article#m-jumbo > header h2 {
   text-align: center;
   font-weight: bold;
 }
-article#m-jumbo > header h1 {
-  font-size: 10vh;
-}
-article#m-jumbo > header h2 {
-  font-size: 3vh;
-}
 article#m-jumbo > header a {
   text-decoration: none;
+}
+article#m-jumbo > header #m-jumbo-cover {
+  padding-bottom: 5rem;
+}
+article#m-jumbo > header #m-jumbo-image {
+  font-size: 2.5vmin;
+  margin-bottom: -3rem;
+}
+article#m-jumbo > header h1 {
+  font-size: 10vmin;
+}
+article#m-jumbo > header h2 {
+  font-size: 3vmin;
+}
+@media screen and (max-height: 640px) , screen and (max-width: 640px) {
+  article#m-jumbo > header h1 {
+    font-size: 3rem;
+  }
+  article#m-jumbo > header #m-jumbo-image, article#m-jumbo > header h2 {
+    font-size: 1rem;
+  }
 }
 article#m-jumbo > header, article#m-jumbo > header h1, article#m-jumbo > header a {
   color: #ffffff;
@@ -822,6 +851,19 @@ article#m-jumbo.m-inverted > header, article#m-jumbo.m-inverted > header h1, art
 }
 article#m-jumbo.m-inverted > header a:hover, article#m-jumbo.m-inverted > header a:focus, article#m-jumbo.m-inverted > header a:active {
   color: #0f0f0f;
+}
+.m-landing-news h3 a {
+  color: #dcdcdc;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.m-landing-news h3 a:hover, .m-landing-news h3 a:hover, .m-landing-news h3 a:focus, .m-landing-news h3 a:active {
+  color: #a5c9ea;
+}
+.m-landing-news time {
+  display: inline-block;
+  margin-left: 1rem;
+  float: right;
 }
 .m-article-pagination {
   text-align: center;
@@ -861,14 +903,23 @@ div.m-scroll {
 .m-fullwidth {
   width: 100%;
 }
-.m-text-center, .m-text-center.m-noindent {
+.m-text-center, .m-text-center.m-noindent, table.m-table th.m-text-center, .m-text-center p {
   text-align: center;
 }
-.m-text-left, .m-text-left.m-noindent {
+.m-text-left, .m-text-left.m-noindent, table.m-table th.m-text-left, .m-text-right p {
   text-align: left;
 }
-.m-text-right, .m-text-right.m-noindent {
+.m-text-right, .m-text-right.m-noindent, table.m-table th.m-text-right, .m-text-right p {
   text-align: right;
+}
+.m-text-top, table.m-table th.m-text-top, table.m-table td.m-text-top {
+  vertical-align: top;
+}
+.m-text-middle, table.m-table th.m-text-middle, table.m-table td.m-text-middle {
+  vertical-align: middle;
+}
+.m-text-bottom, table.m-table th.m-text-bottom, table.m-table td.m-text-bottom {
+  vertical-align: bottom;
 }
 .m-text.m-small {
   font-size: 85.4%;
@@ -945,6 +996,9 @@ dl.m-diary dd {
   border-radius: 0.2rem;
   padding: 1rem;
 }
+.m-note pre, .m-note code {
+  background-color: rgba(34, 39, 46, 0.5);
+}
 .m-frame {
   background-color: #2f363f;
   border-style: solid;
@@ -961,7 +1015,28 @@ dl.m-diary dd {
   border-color: #405363;
   padding: 0.9375rem 0.9375rem 0.9375rem 0.75rem;
 }
-a.m-button {
+.m-block.m-badge::after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+.m-block.m-badge h3 {
+  margin-left: 5rem;
+}
+.m-block.m-badge p {
+  margin-left: 5rem;
+  text-indent: 0;
+}
+.m-block.m-badge img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+  float: left;
+}
+div.m-button {
+  text-align: center;
+}
+div.m-button a {
   display: inline-block;
   border-radius: 0.2rem;
   padding-top: 0.75rem;
@@ -969,30 +1044,45 @@ a.m-button {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   text-decoration: none;
-  text-align: center;
   font-size: 1.17rem;
 }
-a.m-button.m-fullwidth {
+div.m-button.m-fullwidth a {
   display: block;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
-a.m-button .m-big:first-child {
+div.m-button a .m-big:first-child {
   font-size: 1.37rem;
   font-weight: bold;
 }
-a.m-button .m-small:last-child {
+div.m-button a .m-small:last-child {
   font-size: 0.854rem;
+}
+.m-label {
+  border-radius: 0.2rem;
+  font-size: 75%;
+  font-weight: normal;
+  padding: 0.125rem 0.25rem;
+  vertical-align: 7.5%;
+}
+.m-label.m-flat {
+  border-width: 0.0625rem;
+  border-style: solid;
+  border-color: #747474;
+  padding: 0.0625rem 0.1875rem;
 }
 table.m-table {
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
 }
+table.m-table.m-big {
+  margin-top: 1.75rem;
+}
 div.m-scroll > table.m-table:last-child {
   margin-bottom: 0.0625rem;
 }
-table.m-table tbody tr:hover {
+table.m-table:not(.m-flat) tbody tr:hover {
   background-color: #405363;
 }
 table.m-table th, table.m-table td {
@@ -1020,18 +1110,35 @@ table.m-table tfoot th, table.m-table tfoot td {
 table.m-table th, table.m-table td {
   padding: 0.5rem;
 }
+table.m-table.m-big th, table.m-table.m-big td {
+  padding: 0.75rem 1rem;
+}
 table.m-table th {
   text-align: left;
 }
-table.m-table td.m-default, th.m-default,
-table.m-table td.m-primary, th.m-primary,
-table.m-table td.m-success, th.m-success,
-table.m-table td.m-warning, th.m-warning,
-table.m-table td.m-danger, th.m-danger,
-table.m-table td.m-info, th.m-info,
-table.m-table td.m-dim, th.m-dim {
+table.m-table th.m-thin {
+  font-weight: normal;
+}
+table.m-table td.m-default, table.m-table th.m-default,
+table.m-table td.m-primary, table.m-table th.m-primary,
+table.m-table td.m-success, table.m-table th.m-success,
+table.m-table td.m-warning, table.m-table th.m-warning,
+table.m-table td.m-danger, table.m-table th.m-danger,
+table.m-table td.m-info, table.m-table th.m-info,
+table.m-table td.m-dim, table.m-table th.m-dim {
   padding-left: 0.4375rem;
   padding-right: 0.4375rem;
+  border-left-width: 0.0625rem;
+}
+table.m-table.m-big td.m-default, table.m-table.m-big th.m-default,
+table.m-table.m-big td.m-primary, table.m-table.m-big th.m-primary,
+table.m-table.m-big td.m-success, table.m-table.m-big th.m-success,
+table.m-table.m-big td.m-warning, table.m-table.m-big th.m-warning,
+table.m-table.m-big td.m-danger, table.m-table.m-big th.m-danger,
+table.m-table.m-big td.m-info, table.m-table.m-big th.m-info,
+table.m-table.m-big td.m-dim, table.m-table.m-big th.m-dim {
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
   border-left-width: 0.0625rem;
 }
 table.m-table tr.m-default td, table.m-table td.m-default,
@@ -1051,17 +1158,29 @@ table.m-table tr.m-dim th, table.m-table th.m-dim {
   border-color: #2f363f;
 }
 .m-block.m-default { border-left-color: #405363; }
-.m-block.m-default h3 { color: #dcdcdc; }
+.m-block.m-default h3, .m-block.m-default h4, .m-block.m-default h5, .m-block.m-default h6 {
+  color: #dcdcdc;
+}
 .m-block.m-primary { border-left-color: #a5c9ea; }
-.m-block.m-primary h3 { color: #a5c9ea; }
+.m-block.m-primary h3, .m-block.m-primary h4, .m-block.m-primary h5, .m-block.m-primary h6 {
+  color: #a5c9ea;
+}
 .m-block.m-success { border-left-color: #3bd267; }
-.m-block.m-success h3 { color: #3bd267; }
+.m-block.m-success h3, .m-block.m-success h4, .m-block.m-success h5, .m-block.m-success h6 {
+  color: #3bd267;
+}
 .m-block.m-warning { border-left-color: #c7cf2f; }
-.m-block.m-warning h3 { color: #c7cf2f; }
+.m-block.m-warning h3, .m-block.m-warning h4, .m-block.m-warning h5, .m-block.m-warning h6 {
+  color: #c7cf2f;
+}
 .m-block.m-danger { border-left-color: #cd3431; }
-.m-block.m-danger h3 { color: #cd3431; }
+.m-block.m-danger h3, .m-block.m-danger h4, .m-block.m-danger h5, .m-block.m-danger h6 {
+  color: #cd3431;
+}
 .m-block.m-info { border-left-color: #2f83cc; }
-.m-block.m-info h3 { color: #2f83cc; }
+.m-block.m-info h3, .m-block.m-info h4, .m-block.m-info h5, .m-block.m-info h6 {
+  color: #2f83cc;
+}
 .m-block.m-dim {
   border-left-color: #747474;
   color: #747474;
@@ -1071,18 +1190,20 @@ table.m-table tr.m-dim th, table.m-table th.m-dim {
   color: #747474;
 }
 .m-block.m-flat { border-color: transparent; }
-.m-block.m-flat h3 { color: #dcdcdc; }
+.m-block.m-flat h3, .m-block.m-flat h4, .m-block.m-flat h5. .m-block.m-flat h6 {
+  color: #dcdcdc;
+}
 .m-note.m-default { background-color: #34424d; }
 .m-note.m-default, table.m-table tr.m-default td, table.m-table td.m-default,
                    table.m-table tr.m-default th, table.m-table th.m-default {
   color: #dcdcdc;
 }
-.m-note.m-primary a:hover, table.m-table tr.m-primary td a:hover, table.m-table td.m-primary a:hover,
-                           table.m-table tr.m-primary th a:hover, table.m-table th.m-primary a:hover,
-.m-note.m-primary a:focus, table.m-table tr.m-primary td a:focus, table.m-table td.m-primary a:focus,
-                           table.m-table tr.m-primary th a:focus, table.m-table th.m-primary a:focus,
-.m-note.m-primary a:active, table.m-table tr.m-primary td a:active, table.m-table td.m-primary a:active,
-                            table.m-table tr.m-primary th a:active, table.m-table th.m-primary a:active {
+.m-note.m-default a:hover, table.m-table tr.m-default td a:hover, table.m-table td.m-default a:hover,
+                           table.m-table tr.m-default th a:hover, table.m-table th.m-default a:hover,
+.m-note.m-default a:focus, table.m-table tr.m-default td a:focus, table.m-table td.m-default a:focus,
+                           table.m-table tr.m-default th a:focus, table.m-table th.m-default a:focus,
+.m-note.m-default a:active, table.m-table tr.m-default td a:active, table.m-table td.m-default a:active,
+                            table.m-table tr.m-default th a:active, table.m-table th.m-default a:active {
   color: #a5c9ea;
 }
 .m-note.m-primary a, table.m-table tr.m-primary td a, table.m-table td.m-primary a,
@@ -1191,47 +1312,51 @@ table.m-table tr.m-dim th, table.m-table th.m-dim {
                         table.m-table tr.m-dim th a:active, table.m-table th.m-dim a:active {
   color: #747474;
 }
-.m-text.m-default { color: #dcdcdc; }
-.m-text.m-primary { color: #a5c9ea; }
-.m-text.m-success { color: #3bd267; }
-.m-text.m-warning { color: #c7cf2f; }
-.m-text.m-danger { color: #cd3431; }
-.m-text.m-info { color: #2f83cc; }
-.m-text.m-dim { color: #747474; }
+.m-text.m-default, .m-label.m-flat.m-default { color: #dcdcdc; }
+.m-text.m-primary, .m-label.m-flat.m-primary { color: #a5c9ea; }
+.m-text.m-success, .m-label.m-flat.m-success { color: #3bd267; }
+.m-text.m-warning, .m-label.m-flat.m-warning { color: #c7cf2f; }
+.m-text.m-danger, .m-label.m-flat.m-danger { color: #cd3431; }
+.m-text.m-info, .m-label.m-flat.m-info { color: #2f83cc; }
+.m-text.m-dim, .m-label.m-flat.m-dim { color: #747474; }
 .m-text.m-dim a { color: #acacac; }
 .m-text.m-dim a:hover, .m-text.m-dim a:focus, .m-text.m-dim a:active {
   color: #747474;
 }
-a.m-button { color: #2f363f; }
-a.m-button.m-default { background-color: #dcdcdc; }
-a.m-button.m-primary { background-color: #a5c9ea; }
-a.m-button.m-success { background-color: #3bd267; }
-a.m-button.m-warning { background-color: #c7cf2f; }
-a.m-button.m-danger { background-color: #cd3431; }
-a.m-button.m-info { background-color: #2f83cc; }
-a.m-button.m-dim { background-color: #747474; }
-a.m-button.m-default:hover, a.m-button.m-default:focus, a.m-button.m-default:active {
+div.m-button a, .m-label { color: #22272e; }
+div.m-button.m-flat a { color: #dcdcdc; }
+div.m-button.m-flat a:hover, div.m-button.m-default a:focus, div.m-button.m-default a:active {
+  color: #a5c9ea;
+}
+div.m-button.m-default a, .m-label:not(.m-flat).m-default { background-color: #dcdcdc; }
+div.m-button.m-primary a, .m-label:not(.m-flat).m-primary { background-color: #a5c9ea; }
+div.m-button.m-success a, .m-label:not(.m-flat).m-success { background-color: #3bd267; }
+div.m-button.m-warning a, .m-label:not(.m-flat).m-warning { background-color: #c7cf2f; }
+div.m-button.m-danger a, .m-label:not(.m-flat).m-danger { background-color: #cd3431; }
+div.m-button.m-info a, .m-label:not(.m-flat).m-info { background-color: #2f83cc; }
+div.m-button.m-dim a, .m-label:not(.m-flat).m-dim { background-color: #747474; }
+div.m-button.m-default a:hover, div.m-button.m-default a:focus, div.m-button.m-default a:active {
   background-color: #a5c9ea;
 }
-a.m-button.m-primary:hover, a.m-button.m-primary:focus, a.m-button.m-primary:active {
+div.m-button.m-primary a:hover, div.m-button.m-primary a:focus, div.m-button.m-primary a:active {
   background-color: #dcdcdc;
 }
-a.m-button.m-success:hover, a.m-button.m-success:focus, a.m-button.m-success:active {
+div.m-button.m-success a:hover, div.m-button.m-success a:focus, div.m-button.m-success a:active {
   background-color: #acecbe;
 }
-a.m-button.m-warning:hover, a.m-button.m-warning:focus, a.m-button.m-warning:active {
+div.m-button.m-warning a:hover, div.m-button.m-warning a:focus, div.m-button.m-warning a:active {
   background-color: #e9ecae;
 }
-a.m-button.m-danger:hover, a.m-button.m-danger:focus, a.m-button.m-danger:active {
+div.m-button.m-danger a:hover, div.m-button.m-danger a:focus, div.m-button.m-danger a:active {
   background-color: #ff9391;
 }
-a.m-button.m-info:hover, a.m-button.m-info:focus, a.m-button.m-info:active {
+div.m-button.m-info a:hover, div.m-button.m-info a:focus, div.m-button.m-info a:active {
   background-color: #5297d7;
 }
-a.m-button.m-dim:hover, a.m-button.m-dim:focus, a.m-button.m-dim:active {
+div.m-button.m-dim a:hover, div.m-button.m-dim a:focus, div.m-button.m-dim a:active {
   background-color: #acacac;
 }
-img.m-image {
+img.m-image, svg.m-image {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -1239,11 +1364,11 @@ img.m-image {
 div.m-image {
   text-align: center;
 }
-img.m-image, div.m-image img {
+img.m-image, svg.m-image, div.m-image img {
   max-width: 100%;
   border-radius: 0.2rem;
 }
-div.m-image.m-fullwidth img {
+div.m-image.m-fullwidth img, div.m-image.m-fullwidth svg {
   width: 100%;
 }
 figure.m-figure {
@@ -1261,7 +1386,7 @@ figure.m-figure:before {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: -1; /* so it doesn't make the contents inactive */
+  z-index: -1;
   border-style: solid;
   border-width: 0.125rem;
   border-radius: 0.2rem;
@@ -1273,68 +1398,107 @@ figure.m-figure.m-flat:before {
 figure.m-figure > * {
   margin-left: 1rem;
   margin-right: 1rem;
+  display: table-caption;
+  caption-side: bottom;
 }
-figure.m-figure:after {
-  content: ' ';
-  display: block;
-  margin-top: 1rem;
-  height: 1px;
+figure.m-figure > *:first-child {
+  display: inline;
+}
+figure.m-figure > *:last-child {
+  margin-bottom: 1rem;
 }
 figure.m-figure img {
-  position: relative; /* so it's above the border */
+  position: relative;
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;
   border-top-left-radius: 0.2rem;
   border-top-right-radius: 0.2rem;
+  max-width: 100%;
+}
+figure.m-figure.m-flat img {
+  border-bottom-left-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
 }
 figure.m-figure figcaption {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   font-weight: bold;
-  font-size: 1.17rem; /* taken from webkit defaults for h3 */
+  font-size: 1.17rem;
 }
 figure.m-figure a img {
   margin-left: -1rem;
   margin-right: -1rem;
 }
-figure.m-figure.m-fullwidth {
+figure.m-figure.m-fullwidth, figure.m-figure.m-fullwidth > * {
   display: block;
+}
+figure.m-figure.m-fullwidth > *:first-child {
+  display: inline;
 }
 figure.m-figure.m-fullwidth img {
   width: 100%;
 }
-figure.m-code-figure {
+figure.m-figure.m-fullwidth:after {
+  content: ' ';
+  display: block;
+  margin-top: 1rem;
+  height: 1px;
+}
+figure.m-code-figure, figure.m-console-figure {
   margin-top: 0;
   margin-left: 0;
   margin-right: 0;
   position: relative;
   padding: 1rem;
 }
-figure.m-code-figure:before {
+figure.m-code-figure:before, figure.m-console-figure:before {
   position: absolute;
   content: ' ';
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: -1; /* so it doesn't make the contents inactive */
+  z-index: -1;
   border-style: solid;
   border-width: 0.125rem;
   border-radius: 0.2rem;
-  border-color: #34424d; /* to match the <pre> background */
 }
-figure.m-code-figure.m-flat:before {
+figure.m-code-figure:before {
+  border-color: #282e36;
+}
+figure.m-console-figure:before {
+  border-color: #000000;
+}
+figure.m-code-figure.m-flat:before, figure.m-console-figure.m-flat:before {
   border-color: transparent;
 }
-figure.m-code-figure > pre:first-child {
-  position: relative; /* so it's above the border */
+figure.m-code-figure > pre:first-child, figure.m-console-figure > pre:first-child {
+  position: relative;
   margin: -1rem -1rem 1rem -1rem;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-article section:target figure.m-code-figure {
-  z-index: 1; /* so the selection border isn't above figure border */
+article section:target figure.m-code-figure, article section:target figure.m-console-figure {
+  z-index: 1;
+}
+figure.m-figure.m-default:before { border-color: #34424d; }
+figure.m-figure.m-default figcaption { color: #dcdcdc; }
+figure.m-figure.m-primary:before { border-color: #a5c2db; }
+figure.m-figure.m-primary figcaption { color: #a5c9ea; }
+figure.m-figure.m-success:before { border-color: #2a703f; }
+figure.m-figure.m-success figcaption { color: #3bd267; }
+figure.m-figure.m-warning:before { border-color: #6d702a; }
+figure.m-figure.m-warning figcaption { color: #c7cf2f; }
+figure.m-figure.m-danger:before { border-color: #702b2a; }
+figure.m-figure.m-danger figcaption { color: #cd3431; }
+figure.m-figure.m-info:before { border-color: #2a4f70; }
+figure.m-figure.m-info figcaption { color: #2f83cc; }
+figure.m-figure.m-dim:before { border-color: #2d3236; }
+figure.m-figure.m-dim { color: #747474; }
+figure.m-figure.m-dim a { color: #acacac; }
+figure.m-figure.m-dim a:hover, figure.m-figure.m-dim a:focus, figure.m-figure.m-dim a:active {
+  color: #747474;
 }
 .m-imagegrid > div {
   background-color: #2f363f; /* to avoid section HL shining through */
@@ -1421,14 +1585,16 @@ article section:target figure.m-code-figure {
 .m-container-inflatable > .m-row > [class*='m-col-'] > .m-frame,
 .m-container-inflatable > .m-row > [class*='m-col-'] > .m-block,
 .m-container-inflatable > .m-row > [class*='m-col-'] > .m-imagegrid,
-.m-container-inflatable > .m-row > [class*='m-col-'] > pre.m-code,
+.m-container-inflatable > .m-row > [class*='m-col-'] > pre,
 .m-container-inflatable > .m-row > [class*='m-col-'] > figure.m-code-figure,
+.m-container-inflatable > .m-row > [class*='m-col-'] > figure.m-console-figure,
 .m-container-inflatable > .m-row > [class*='m-col-'] section > .m-note,
 .m-container-inflatable > .m-row > [class*='m-col-'] section > .m-frame,
 .m-container-inflatable > .m-row > [class*='m-col-'] section > .m-block,
 .m-container-inflatable > .m-row > [class*='m-col-'] section > .m-imagegrid,
-.m-container-inflatable > .m-row > [class*='m-col-'] section > pre.m-code,
-.m-container-inflatable > .m-row > [class*='m-col-'] section > figure.m-code-figure {
+.m-container-inflatable > .m-row > [class*='m-col-'] section > pre,
+.m-container-inflatable > .m-row > [class*='m-col-'] section > figure.m-code-figure,
+.m-container-inflatable > .m-row > [class*='m-col-'] section > figure.m-console-figure {
   margin-left: -1rem;
   margin-right: -1rem;
 }
@@ -1456,13 +1622,15 @@ article section:target figure.m-code-figure {
 .m-container-inflatable section:target > .m-note,
 .m-container-inflatable section:target > .m-frame,
 .m-container-inflatable section:target > .m-block,
-.m-container-inflatable section:target > pre.m-code,
+.m-container-inflatable section:target > pre,
 .m-container-inflatable section:target > figure.m-code-figure > pre:first-child,
+.m-container-inflatable section:target > figure.m-console-figure > pre:first-child,
 .m-container-inflatable section:target section > .m-note,
 .m-container-inflatable section:target section > .m-frame,
 .m-container-inflatable section:target section > .m-block,
-.m-container-inflatable section:target section > pre.m-code,
-.m-container-inflatable section:target section > figure.m-code-figure > pre:first-child {
+.m-container-inflatable section:target section > pre,
+.m-container-inflatable section:target section > figure.m-code-figure > pre:first-child,
+.m-container-inflatable section:target section > figure.m-console-figure > pre:first-child {
   margin-left: -1.0rem;
   border-left-style: solid;
   border-left-width: 0.25rem;
@@ -1471,18 +1639,26 @@ article section:target figure.m-code-figure {
   padding-left: 0.75rem;
 }
 .m-container-inflatable section:target > figure.m-code-figure::before,
-.m-container-inflatable section:target section > figure.m-code-figure::before {
+.m-container-inflatable section:target > figure.m-console-figure::before,
+.m-container-inflatable section:target section > figure.m-code-figure::before,
+.m-container-inflatable section:target section > figure.m-console-figure::before {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left-width: 0.25rem;
 }
-.m-container-inflatable section:target > pre.m-code,
+.m-container-inflatable section:target > pre,
 .m-container-inflatable section:target > figure.m-code-figure > pre:first-child,
-.m-container-inflatable section:target section > pre.m-code,
-.m-container-inflatable section:target section > figure.m-code-figure > pre:first-child {
+.m-container-inflatable section:target > figure.m-console-figure > pre:first-child,
+.m-container-inflatable section:target section > pre,
+.m-container-inflatable section:target section > figure.m-code-figure > pre:first-child,
+.m-container-inflatable section:target section > figure.m-console-figure > pre:first-child {
   border-color: #405363;
 }
+.m-container-inflatable section:target > figure.m-code-figure::before,
+.m-container-inflatable section:target > figure.m-console-figure::before,
 .m-container-inflatable section:target > .m-note.m-default,
+.m-container-inflatable section:target section > figure.m-code-figure::before,
+.m-container-inflatable section:target section > figure.m-console-figure::before,
 .m-container-inflatable section:target section > .m-note.m-default {
   border-left-color: #405363;
 }
@@ -1511,12 +1687,9 @@ article section:target figure.m-code-figure {
   border-left-color: #747474;
 }
 pre.m-code span.hll {
-  border-color: #405363;
   margin-left: -1.0rem;
   margin-right: -1.0rem;
-  border-left-style: solid;
-  border-left-width: 0.25rem;
-  padding-left: 0.75rem;
+  padding-left: 1.0rem;
 }
 pre.m-code.m-inverted {
   color: rgba(230, 230, 230, 0.33);
@@ -1532,6 +1705,7 @@ pre.m-code.m-inverted > span.hll {
 }
 div.m-math {
   overflow-x: auto;
+  overflow-y: hidden;
   text-align: center;
 }
 div.m-math svg, svg.m-math { fill: #dcdcdc; }
@@ -1542,82 +1716,123 @@ div.m-math.m-warning svg, svg.m-math.m-warning { fill: #c7cf2f; }
 div.m-math.m-danger svg, svg.m-math.m-danger { fill: #cd3431; }
 div.m-math.m-info svg, svg.m-math.m-info { fill: #2f83cc; }
 div.m-math.m-dim svg, svg.m-math.m-dim { fill: #747474; }
-p, ul, ol, dl, blockquote, hr, pre, figure.m-code-figure,
-article, article > header, article section,
-.m-note, .m-frame, .m-block, .m-button,
-div.m-scroll, table.m-table, div.m-image, img.m-image,
+p, ul, ol, dl, blockquote, pre, figure.m-code-figure, figure.m-console-figure,
+hr, article, article > header, article section,
+.m-note, .m-frame, .m-block, div.m-button,
+div.m-scroll, table.m-table, div.m-image, img.m-image, svg.m-image,
 figure.m-figure, .m-imagegrid, div.m-math {
   margin-bottom: 1rem;
 }
 p:last-child, ul:last-child, ol:last-child, dl:last-child, blockquote:last-child,
-hr:last-child, pre:last-child, figure.m-code-figure:last-child,
-article:last-child, article section:last-child,
-.m-note:last-child, .m-frame:last-child, .m-block:last-child, .m-button:last-child,
-table.m-table:last-child, img.m-image:last-child, div.m-image:last-child,
+pre:last-child, figure.m-code-figure:last-child, figure.m-console-figure:last-child,
+hr:last-child, article:last-child, article section:last-child,
+.m-note:last-child, .m-frame:last-child, .m-block:last-child,
+div.m-button:last-child, div.m-scroll:last-child, table.m-table:last-child,
+img.m-image:last-child, svg.m-image:last-child, div.m-image:last-child,
 figure.m-figure:last-child, .m-imagegrid:last-child, div.m-math:last-child {
   margin-bottom: 0;
 }
+li > p:last-child, li > blockquote:last-child, li > pre:last-child,
+li > figure.m-code-figure:last-child, li > figure.m-console-figure:last-child,
+li > .m-note:last-child, li > .m-frame:last-child, li > .m-block:last-child,
+li > div.m-button:last-child, li > div.m-scroll:last-child, li > table.m-table:last-child,
+li > img.m-image:last-child, li > svg.m-image:last-child, li > div.m-image:last-child,
+li > figure.m-figure:last-child, li > div.m-math:last-child {
+  margin-bottom: 1rem;
+}
+li:last-child > p:last-child, li:last-child > blockquote:last-child, li:last-child > pre:last-child,
+li:last-child > figure.m-code-figure:last-child, li:last-child > figure.m-console-figure:last-child,
+li:last-child > .m-note:last-child, li:last-child > .m-frame:last-child, li:last-child > .m-block:last-child,
+li:last-child > div.m-button:last-child, li:last-child > div.m-scroll:last-child,
+li:last-child > table.m-table:last-child, li:last-child > img.m-image:last-child,
+li:last-child > svg.m-image:last-child, li:last-child > div.m-image:last-child,
+li:last-child > figure.m-figure:last-child, li:last-child > div.m-math:last-child {
+  margin-bottom: 0;
+}
 
-.m-code .hll { background-color: #405363 }
-.m-code .c { color: #a5c9ea } /* Comment */
-.m-code .k { color: #ffffff; font-weight: bold } /* Keyword */
-.m-code .n { color: #dcdcdc } /* Name */
-.m-code .o { color: #aaaaaa } /* Operator */
-.m-code .p { color: #aaaaaa } /* Punctuation */
-.m-code .ch { color: #a5c9ea } /* Comment.Hashbang */
-.m-code .cm { color: #a5c9ea } /* Comment.Multiline */
-.m-code .cp { color: #3bd267 } /* Comment.Preproc */
-.m-code .cpf { color: #c7cf2f } /* Comment.PreprocFile */
-.m-code .c1 { color: #a5c9ea } /* Comment.Single */
-.m-code .cs { color: #a5c9ea } /* Comment.Special */
-.m-code .ge { color: #e6e6e6; font-style: italic } /* Generic.Emph */
-.m-code .gh { color: #ffffff; font-weight: bold } /* Generic.Heading */
-.m-code .gs { color: #e6e6e6; font-weight: bold } /* Generic.Strong */
-.m-code .kc { color: #ffffff; font-weight: bold } /* Keyword.Constant */
-.m-code .kd { color: #ffffff; font-weight: bold } /* Keyword.Declaration */
-.m-code .kn { color: #ffffff; font-weight: bold } /* Keyword.Namespace */
-.m-code .kp { color: #ffffff; font-weight: bold } /* Keyword.Pseudo */
-.m-code .kr { color: #ffffff; font-weight: bold } /* Keyword.Reserved */
-.m-code .kt { color: #ffffff; font-weight: bold } /* Keyword.Type */
-.m-code .m { color: #c7cf2f } /* Literal.Number */
-.m-code .s { color: #e07f7c } /* Literal.String */
-.m-code .na { color: #dcdcdc; font-weight: bold } /* Name.Attribute */
-.m-code .nb { color: #ffffff; font-weight: bold } /* Name.Builtin */
-.m-code .nc { color: #dcdcdc; font-weight: bold } /* Name.Class */
-.m-code .no { color: #dcdcdc } /* Name.Constant */
-.m-code .nd { color: #dcdcdc } /* Name.Decorator */
-.m-code .ni { color: #dcdcdc } /* Name.Entity */
-.m-code .ne { color: #dcdcdc } /* Name.Exception */
-.m-code .nf { color: #dcdcdc } /* Name.Function */
-.m-code .nl { color: #dcdcdc } /* Name.Label */
-.m-code .nn { color: #dcdcdc } /* Name.Namespace */
-.m-code .nx { color: #dcdcdc } /* Name.Other */
-.m-code .py { color: #dcdcdc } /* Name.Property */
-.m-code .nt { color: #dcdcdc; font-weight: bold } /* Name.Tag */
-.m-code .nv { color: #c7cf2f } /* Name.Variable */
-.m-code .ow { color: #dcdcdc; font-weight: bold } /* Operator.Word */
-.m-code .mb { color: #c7cf2f } /* Literal.Number.Bin */
-.m-code .mf { color: #c7cf2f } /* Literal.Number.Float */
-.m-code .mh { color: #c7cf2f } /* Literal.Number.Hex */
-.m-code .mi { color: #c7cf2f } /* Literal.Number.Integer */
-.m-code .mo { color: #c7cf2f } /* Literal.Number.Oct */
-.m-code .sa { color: #e07f7c } /* Literal.String.Affix */
-.m-code .sb { color: #e07f7c } /* Literal.String.Backtick */
-.m-code .sc { color: #e07cdc } /* Literal.String.Char */
-.m-code .dl { color: #e07f7c } /* Literal.String.Delimiter */
-.m-code .sd { color: #e07f7c } /* Literal.String.Doc */
-.m-code .s2 { color: #e07f7c } /* Literal.String.Double */
-.m-code .se { color: #e07f7c } /* Literal.String.Escape */
-.m-code .sh { color: #e07f7c } /* Literal.String.Heredoc */
-.m-code .si { color: #e07f7c } /* Literal.String.Interpol */
-.m-code .sx { color: #e07f7c } /* Literal.String.Other */
-.m-code .sr { color: #e07f7c } /* Literal.String.Regex */
-.m-code .s1 { color: #e07f7c } /* Literal.String.Single */
-.m-code .ss { color: #e07f7c } /* Literal.String.Symbol */
-.m-code .bp { color: #ffffff; font-weight: bold } /* Name.Builtin.Pseudo */
-.m-code .fm { color: #dcdcdc } /* Name.Function.Magic */
-.m-code .vc { color: #c7cf2f } /* Name.Variable.Class */
-.m-code .vg { color: #c7cf2f } /* Name.Variable.Global */
-.m-code .vi { color: #c7cf2f } /* Name.Variable.Instance */
-.m-code .vm { color: #c7cf2f } /* Name.Variable.Magic */
-.m-code .il { color: #c7cf2f } /* Literal.Number.Integer.Long */
+.m-code .hll { background-color: #34424d }
+.m-code .c { color: #a5c9ea }
+.m-code .k { color: #ffffff; font-weight: bold }
+.m-code .n { color: #dcdcdc }
+.m-code .o { color: #aaaaaa }
+.m-code .p { color: #aaaaaa }
+.m-code .ch { color: #a5c9ea }
+.m-code .cm { color: #a5c9ea }
+.m-code .cp { color: #3bd267 }
+.m-code .cpf { color: #c7cf2f }
+.m-code .c1 { color: #a5c9ea }
+.m-code .cs { color: #a5c9ea }
+.m-code .ge { color: #e6e6e6; font-style: italic }
+.m-code .gh { color: #ffffff; font-weight: bold }
+.m-code .gs { color: #e6e6e6; font-weight: bold }
+.m-code .kc { color: #ffffff; font-weight: bold }
+.m-code .kd { color: #ffffff; font-weight: bold }
+.m-code .kn { color: #ffffff; font-weight: bold }
+.m-code .kp { color: #ffffff; font-weight: bold }
+.m-code .kr { color: #ffffff; font-weight: bold }
+.m-code .kt { color: #ffffff; font-weight: bold }
+.m-code .m { color: #c7cf2f }
+.m-code .s { color: #e07f7c }
+.m-code .na { color: #dcdcdc; font-weight: bold }
+.m-code .nb { color: #ffffff; font-weight: bold }
+.m-code .nc { color: #dcdcdc; font-weight: bold }
+.m-code .no { color: #dcdcdc }
+.m-code .nd { color: #dcdcdc }
+.m-code .ni { color: #dcdcdc }
+.m-code .ne { color: #dcdcdc }
+.m-code .nf { color: #dcdcdc }
+.m-code .nl { color: #dcdcdc }
+.m-code .nn { color: #dcdcdc }
+.m-code .nx { color: #dcdcdc }
+.m-code .py { color: #dcdcdc }
+.m-code .nt { color: #dcdcdc; font-weight: bold }
+.m-code .nv { color: #c7cf2f }
+.m-code .ow { color: #dcdcdc; font-weight: bold }
+.m-code .mb { color: #c7cf2f }
+.m-code .mf { color: #c7cf2f }
+.m-code .mh { color: #c7cf2f }
+.m-code .mi { color: #c7cf2f }
+.m-code .mo { color: #c7cf2f }
+.m-code .sa { color: #e07f7c }
+.m-code .sb { color: #e07f7c }
+.m-code .sc { color: #e07cdc }
+.m-code .dl { color: #e07f7c }
+.m-code .sd { color: #e07f7c }
+.m-code .s2 { color: #e07f7c }
+.m-code .se { color: #e07f7c }
+.m-code .sh { color: #e07f7c }
+.m-code .si { color: #e07f7c }
+.m-code .sx { color: #e07f7c }
+.m-code .sr { color: #e07f7c }
+.m-code .s1 { color: #e07f7c }
+.m-code .ss { color: #e07f7c }
+.m-code .bp { color: #ffffff; font-weight: bold }
+.m-code .fm { color: #dcdcdc }
+.m-code .vc { color: #c7cf2f }
+.m-code .vg { color: #c7cf2f }
+.m-code .vi { color: #c7cf2f }
+.m-code .vm { color: #c7cf2f }
+.m-code .il { color: #c7cf2f }
+
+.m-console .hll { background-color: #ffffcc }
+.m-console .g-AnsiBlack { color: #000000 }
+.m-console .g-AnsiBlue { color: #3f3fd1 }
+.m-console .g-AnsiBrightBlack { color: #686868; font-weight: bold }
+.m-console .g-AnsiBrightBlue { color: #5454ff; font-weight: bold }
+.m-console .g-AnsiBrightCyan { color: #54ffff; font-weight: bold }
+.m-console .g-AnsiBrightDefault { color: #ffffff; font-weight: bold }
+.m-console .g-AnsiBrightGreen { color: #54ff54; font-weight: bold }
+.m-console .g-AnsiBrightMagenta { color: #ff54ff; font-weight: bold }
+.m-console .g-AnsiBrightRed { color: #ff5454; font-weight: bold }
+.m-console .g-AnsiBrightWhite { color: #ffffff; font-weight: bold }
+.m-console .g-AnsiBrightYellow { color: #ffff54; font-weight: bold }
+.m-console .g-AnsiCyan { color: #18b2b2 }
+.m-console .g-AnsiDefault { color: #b2b2b2 }
+.m-console .g-AnsiGreen { color: #18b218 }
+.m-console .g-AnsiMagenta { color: #b218b2 }
+.m-console .g-AnsiRed { color: #b21818 }
+.m-console .g-AnsiWhite { color: #b2b2b2 }
+.m-console .g-AnsiYellow { color: #b26818 }
+.m-console .go { color: #b2b2b2 }
+.m-console .gp { color: #54ffff; font-weight: bold }
+.m-console .w { color: #b2b2b2 }
