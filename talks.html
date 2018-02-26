@@ -12,5 +12,23 @@ $for(talks)$
 
     <section>
         <p>$body$</p>
+        <div class="m-row">
+          <div class="m-col-l-5">
+            <div class="m-fullwidth m-button m-success">
+              <a href="$url$" class="m-button" target="_blank">Video</a>
+            </div>
+          </div>
+          <div class="m-col-l-5 m-push-l-2">
+            $if(slides)$
+            <div class="m-fullwidth m-button m-primary">
+              <a href="$slides$" class="m-button" target="_blank">Slides</a>
+            </div>
+            $else$
+            <div disabled class="m-fullwidth m-button m-dim">
+              <a disabled class="m-button" style="pointer-events:none; cursor:default">Slides (coming soon!)</a>
+            </div>
+            $endif$
+          </div>
+        </div>
     </section>
 $endfor$
