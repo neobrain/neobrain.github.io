@@ -16,8 +16,17 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/*" $ do
+    match "css/default.css" $ do
         route   idRoute
+        -- To reduce flashing on first page load, we set the default visibility of all (at that point unstyled) elements to hidden;
+        -- To make them show up once the full CSS has loaded, we prefix the CSS file with proper visibility.
+        -- We do this here instead of in the actual CSS file so that we can synchronise against upstream more easily.
+        let cssPrefix = "*, ::before, ::after { visibility:visible }\n"
+        compile $ getResourceBody
+           >>= (withItemBody (return . compressCss . (cssPrefix ++ )))
+
+    match "css/*" $ do
+        route idRoute
         compile compressCssCompiler
 
     match (fromList ["about.markdown", "contact.markdown"]) $ do
