@@ -2,7 +2,7 @@
 title: "Generative Programming in Action: Emulating the 3DS"
 url: https://skillsmatter.com/skillscasts/11505-generative-programming-in-action-emulating-the-3ds
 location: "C++::London"
-slides: "/talks/cpplondon_feb_2018/"
+slides: "/talks/cpplondon_feb2018/"
 ---
 
 Console emulation needs to stem the difficult balance between optimizing code for stable frame rates and maintaining the complex logic required to emulate the given hardware - any subtle bug in this system easily manifests in a user-visible glitch. How can modern C++ help?
