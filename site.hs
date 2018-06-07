@@ -32,7 +32,7 @@ main = hakyll $ do
     match (fromList ["about.markdown", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" defaultTemplateContext
             >>= relativizeUrls
 
     match "posts/*.markdown" $ do
@@ -117,13 +117,12 @@ main = hakyll $ do
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
-                    defaultContext
+                    defaultTemplateContext
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
-
 
     match "index.html" $ do
         route idRoute
@@ -132,21 +131,11 @@ main = hakyll $ do
             let indexCtx =
                     listField "posts" (postCtx `mappend` teaserField "teaser" "content") (return posts) `mappend`
                     constField "title" "Blog"                `mappend`
-                    defaultContext
+                    defaultTemplateContext
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
-                >>= relativizeUrls
-
-    match "resume.html" $ do
-        route idRoute
-        compile $ do
-            let pageCtx = defaultContext
-
-            getResourceBody
-                >>= applyAsTemplate pageCtx
-                >>= loadAndApplyTemplate "templates/default.html" pageCtx
                 >>= relativizeUrls
 
     match "talks.html" $ do
@@ -155,7 +144,7 @@ main = hakyll $ do
             posts <- recentFirst =<< loadAll "talks/*"
             let pageCtx =
                     listField "talks" postCtx (return posts) `mappend`
-                    defaultContext
+                    defaultTemplateContext
 
             getResourceBody
                 >>= applyAsTemplate pageCtx
@@ -180,6 +169,10 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "templates/blog_comment.html" commentCtx
         >>= relativizeUrls
 
+    match "resources/resume_180607.pdf" $ do
+        route $ constRoute linkToResume
+        compile copyFileCompiler
+
     create ["feed.rss"] $ do
       route idRoute
       compile $ do
@@ -193,7 +186,14 @@ main = hakyll $ do
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
+    defaultTemplateContext
+
+defaultTemplateContext :: Context String
+defaultTemplateContext =
+    constField "linktoresume" ("/" ++ linkToResume) `mappend`
     defaultContext
+
+linkToResume = "resources/resume.pdf"
 
 rssFeedConfiguration = FeedConfiguration
   { feedTitle = "neobrain.github.io"
