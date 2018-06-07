@@ -35,7 +35,7 @@
                             </ol>
                             <ol class="m-col-t-5 m-col-m-none">
                                 <li><a href="./talks.html">Talks</a></li>
-                                <li><a href="./resume.html">Resume</a></li>
+                                <li><a href="./resources/resume.pdf">Resume</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
                             </ol>
                             <ol class="m-col-t-3 m-col-m-none">
@@ -59,17 +59,15 @@
                       
                       <h1>About</h1>
                       
-                      <p>Hi! My name is Tony - I’m a long-term C++ enthusiast, excited about writing low-level software without compromising on correctness, expressiveness, or performance. This website is where I’m gathering some of my thoughts on modern C++ and the projects I use it for. Occasionally, some rambling about Haskell may find its way to my blog, too :)</p>
+                      <p>I’m a freelance software developer Berlin, Germany. I work on low-level software like operating systems (kernels and drivers alike) and firmware for embedded systems. My main interest is using strong type-safety to write software in resource-constrained and timing-sensitive applications with good performance with better robustness and correctness than with other approaches.</p>
+<p>Even before my professional career I have been a long-term C++ enthusiast, having worked mostly on game console emulators. You can read more about my background on my <a href="./resources/resume.pdf">resume</a>.</p>
 <h2 id="portfolio">Portfolio</h2>
-<p>I’m most well-known for my work on game console emulators.</p>
 <h3 id="dolphin-gamecubewii"><a href="https://dolphin-emu.org">Dolphin, GameCube/Wii</a></h3>
-<p>I mainly worked on GPU emulation, having fixed a number of really <a href="https://dolphin-emu.org/blog/2014/03/15/pixel-processing-problems">cool bugs</a> along the way. I also revamped parts of the user interface for a more user-friendly experience, and I implemented Dolphin’s (at the time very overdue) <a href="https://github.com/dolphin-emu/hwtests">hardware testing framework</a>.</p>
+<p>I fixed a lot of really cool <a href="https://dolphin-emu.org/blog/2014/03/15/pixel-processing-problems">GPU emulation bugs</a>, and eventually became the maintainer of the GPU emulator subsystem. I also revamped parts of the user interface for a more user-friendly experience, implemented Dolphin’s (at the time very overdue) <a href="https://github.com/dolphin-emu/hwtests">hardware testing framework</a>, and managed the release of <a href="https://forums.dolphin-emu.org/Thread-dolphin-3-0-release-announcement">two</a> <a href="https://forums.dolphin-emu.org/Thread-red-notice-2-announcement-dolphin-3-5-release-announcement">major</a> emulator versions.</p>
 <h3 id="ppsspp-psp"><a href="https://ppsspp.org">PPSSPP, PSP</a></h3>
-<p>I implemented PPSSPP’s <a href="https://github.com/hrydgard/ppsspp/commits/74eafcab1afaf6c291e22e8ed69d3cf607ea7e16/GPU/Software">software renderer</a> as a reference backend. At a time where few games were rendering properly with the existing OpenGL renderer, the software renderer provided us with a useful tool to see what assumptions were breaking the other backend and consequently helped us understand what needs to be addressed next.</p>
+<p>I implemented PPSSPP’s <a href="https://github.com/hrydgard/ppsspp/commits/74eafcab1afaf6c291e22e8ed69d3cf607ea7e16/GPU/Software">software renderer</a> as a reference backend. At a time where few games were rendering properly with the existing OpenGL renderer, the software renderer provided us with a useful tool to see what assumptions were breaking the other backend and consequently helped us understand what needs to be addressed next. This project also taught me a lot about algorithms used in 3D renderers and about their implementation in hardware.</p>
 <h3 id="citra-3ds"><a href="https://citra-emu.org">Citra, 3DS</a></h3>
-<p>I cofounded <a href="https://citra-emu.org">Citra</a>, the first functional 3DS emulator, back in 2014. I designed the graphics emulation core and implemented the reference implementation for it. I also created <a href="https://github.com/citra-emu/uncart">some</a> <a href="https://github.com/neobrain/braindump">tools</a> for users to dump content from their 3DS and wrote introductory documentation to help people get started with citra development.</p>
-<h3 id="other-projects">Other projects</h3>
-<p>A long while ago, I’ve also worked on implementing the D3DX9 library in the <a href="http://winehq.org">Wine</a> project.</p>
+<p>I cofounded <a href="https://github.com/citra-emu/citra">Citra</a>, the first functional 3DS emulator, back in 2014. I designed the graphics <a href="https://github.com/citra-emu/citra/tree/master/src/video_core">emulation core</a> and implemented the software renderer. To ensure correctness of the written code, I developed various debugging utilities and testing infrastructure. I also created <a href="https://github.com/citra-emu/uncart">some</a> <a href="https://github.com/neobrain/braindump">tools</a> for users to dump content from their 3DS and wrote introductory documentation to help people get started with citra development.</p>
                       </section>
                       <!-- /content -->
                     </div>
