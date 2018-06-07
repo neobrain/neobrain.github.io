@@ -4,12 +4,17 @@ render_custom_title: true
 ---
 
 <div class="m-row">
-  <div class="m-col-l-12">
-    <!-- TODO: Adapt image size to screen size class (tiny, medium, large, etc) -->
-    <img src="/images/glitchedcube.png" style="float: right; margin-left: 2%; margin-top: 3%; object-fit:cover; width:15%" />
-    <h1>$title$</h1>
-    <p>Still working on it - not much to see yet :)</p>
-    <p>Make sure to check out <a href="/talks.html">my talks</a>, though!</p>
+  <div class="m-col-l-12 m-nopadt">
+    <div style="display:flex; align-items: flex-start; justify-content:space-between">
+      <span>
+        <h1>$title$</h1>
+        <p>Still working on it - not much to see yet :)</p>
+        <p>Make sure to check out <a href="/talks.html">my talks</a>, though!</p>
+      </span>
+      <span class="myavatar">
+        <img src="/images/glitchedcube.png" class="m-fullwidth" />
+      </span>
+    </div>
   </div>
 </div>
 <hr>
