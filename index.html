@@ -14,6 +14,7 @@
         header { background-color:#22272e; visibility : visible }
         footer { background-color:#444e5c; visibility : visible }
         textarea, input { border-radius:0.2rem; background-color:#34424d; color:#dcdcdc; font-family:inherit; font-size:inherit; font-size:1.0rem }
+        [class*='m-col-l-'] > div > .myavatar { width:7rem; margin-left:3% }
         </style>
         <link rel="stylesheet" href="./css/default.css" />
         <link rel="stylesheet" href="./css/cppsyntax.css" />
@@ -58,16 +59,37 @@
                       
                       
                       <div class="m-row">
-  <div class="m-col-l-12">
-    <!-- TODO: Adapt image size to screen size class (tiny, medium, large, etc) -->
-    <img src="./images/glitchedcube.png" style="float: right; margin-left: 2%; margin-top: 3%; object-fit:cover; width:15%" />
-    <h1>Blog</h1>
-    <p>Still working on it - not much to see yet :)</p>
-    <p>Make sure to check out <a href="./talks.html">my talks</a>, though!</p>
+  <div class="m-col-l-12 m-nopadt">
+    <div style="display:flex; align-items: flex-start; justify-content:space-between">
+      <span>
+        <h1>Blog</h1>
+        <p>Still working on it - not much to see yet :)</p>
+        <p>Make sure to check out <a href="./talks.html">my talks</a>, though!</p>
+      </span>
+      <span class="myavatar">
+        <img src="./images/glitchedcube.png" class="m-fullwidth" />
+      </span>
+    </div>
   </div>
 </div>
 <hr>
 
+
+<section>
+    <h2><a href="./posts/2018-06-07-cppnow-trip-report.html">C++Now 2018 Trip Report</a></h2>
+    <article>
+    <section class="header">
+        <i><div class="m-text m-dim m-text-left">
+            Posted on June  7, 2018
+            <span style="float:right;"><a href="./posts/2018-06-07-cppnow-trip-report.html#comments">0 comments</a></span>
+        </div></i>
+    </section>
+    <section>
+      <p>I’ve had the opportunity of attending this year’s C++Now conference, and it’s been nothing short of an amazing trip. I figured I’d share the experience, explain what exactly makes this conference such a great event, and what distinguishes it from other conferences.</p>
+
+    <a href="./posts/2018-06-07-cppnow-trip-report.html" style="text-decoration:none">➞ Read more…</a>
+    <hr>
+</section>
 
 <section>
     <h2><a href="./posts/2017-11-04-hello-world.html">Hello World</a></h2>

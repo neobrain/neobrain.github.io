@@ -1,90 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
-    xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <channel>
-        <title>neobrain.github.io</title>
-        <link>https://neobrain.github.io</link>
-        <description><![CDATA[neobrain's blog]]></description>
-        <atom:link href="https://neobrain.github.io/feed.rss" rel="self"
-                   type="application/rss+xml" />
-        <lastBuildDate>Sat, 04 Nov 2017 00:00:00 UT</lastBuildDate>
-        <item>
-    <title>Hello World</title>
-    <link>https://neobrain.github.io/posts/2017-11-04-hello-world.html</link>
-    <description><![CDATA[<article>
-    <section class="header">
-        <i><div class="m-text m-dim m-text-left">
-            Posted on November  4, 2017
-            <span style="float:right;"><a href="/posts/2017-11-04-hello-world.html#comments">0 comments</a></span>
-        </div></i>
-    </section>
-    <section>
-      <p>Hi there! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet felis diam, eu porta sapien posuere id. Duis magna velit, auctor non eleifend vitae, efficitur eget nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus quis purus ac lectus dapibus aliquam. Ut sollicitudin dictum fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae lobortis diam. Etiam pharetra tempor tellus vel tristique. Sed cursus in risus quis vulputate.</p>
-<!--more-->
-<aside class="m-note m-primary">
-Primary highlighting!
-</aside>
-<h2 id="overview">Overview</h2>
-<p>Ut massa eros, sollicitudin ac elit ut, tempor sagittis ante. Etiam non mauris quis metus ornare aliquam. Duis non sodales ligula. Sed vehicula in diam ac ultricies. Sed elementum, massa in blandit sodales, ex ante eleifend lacus, rhoncus feugiat augue libero in ex. Sed eleifend mollis faucibus. Nunc sit amet tempus leo. Vestibulum maximus ante nec efficitur semper. Donec dictum tellus in dui ultricies, in tincidunt augue semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sodales, odio sed cursus hendrerit, justo lectus feugiat libero, in ultrices sem sem non massa. Proin quis urna lacinia, fermentum libero sed, sagittis nisl. Donec eu nisi et libero tincidunt consequat et in elit.</p>
-<aside class="m-note m-info">
-I am an info box!
-</aside>
-<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris volutpat nisi eros, eu ornare ligula lobortis quis. Nunc non feugiat libero. Curabitur ac tellus porta, porttitor erat vehicula, consectetur mi. Praesent pretium turpis id nibh placerat viverra. In iaculis dui ut placerat fermentum. Nam ante mauris, sollicitudin a aliquet vel, aliquam id purus.</p>
-<aside class="m-note m-warning">
-I am a warning box!
-</aside>
-<h2 id="the-gist-of-it">The gist of it</h2>
-<p>Some C++ code:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main() {
-	<span class="kw">auto</span> x = []() {
-		<span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Hello World&quot;</span> &lt;&lt; <span class="bu">std::</span>endl;
-	};
-	x();
-	<span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-<p>And some bash:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="ex">stack</span> install hakyll</code></pre></div>
-    </section>
-    <hr style="width:100%"/>
-    <section>
-      <h3 id="comments">0 comments</h3>
-      
-    </section>
-    <section>
-      <div class="m-row">
-        <div class="m-col-l-10 m-push-l-1 m-frame">
-          <h3>Leave a comment&#8230;</h3>
-          <form method="POST" action="#">
-            <label><textarea disabled placeholder="Comment system is in the works - stay tuned!" name="fields[message]" style="width:100%; height:10rem"></textarea></label>
-            <div class="m-row">
-              <div class="m-col-s-12 m-col-m-6 m-text-center">
-                <label>Name:&nbsp;&nbsp;&nbsp;&nbsp;<input disabled name="fields[name]" type="text" style="width:70%"></label>
-              </div>
-              <div class="m-col-s-12 m-col-m-6 m-text-center">
-                <label>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;<input disabled name="fields[email]" type="email" style="width:70%"></label>
-              </div>
-              <div class="m-col-t-12 m-button m-primary">
-                <button disabled type="submit" class="m-button m-danger m-right-t">Submit</button>
-              </div>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tony Wasserka - C++Now 2018 Trip Report</title>
+        <!-- TODO: not sure this is what we want... after all, it hides the content until 53 kb of css have been downloaded -->
+        <!-- TODO: This seems to be an issue with GitHub pages: they set the max-age HTML header field to zero for css files... -->
+        <!-- minimal variant of the stylesheet to reduce flashing during page load -->
+        <style>
+        * { visibility : hidden }
+        body { background-color:#2f363f; visibility : visible }
+        header { background-color:#22272e; visibility : visible }
+        footer { background-color:#444e5c; visibility : visible }
+        textarea, input { border-radius:0.2rem; background-color:#34424d; color:#dcdcdc; font-family:inherit; font-size:inherit; font-size:1.0rem }
+        [class*='m-col-l-'] > div > .myavatar { width:7rem; margin-left:3% }
+        </style>
+        <link rel="stylesheet" href="../css/default.css" />
+        <link rel="stylesheet" href="../css/cppsyntax.css" />
+        <meta name="theme-color" content="#22272e" />
+    </head>
+    <body> <!-- set bgcolor to make page transitions prettier on the eye (i.e. prevent flashing) -->
+        <header><nav id="navigation">
+            <div style="background-color:#22272e" class="m-container">
+                <div class="m-row">
+                    <div class="m-col-l-1 m-hide-t m-show-l">&nbsp;</div>
+                    <a id="m-navbar-show" href="#navigation" title="Show navigation" class="m-col-t-8 m-hide-m m-text-left"></a>
+                    <a id="m-navbar-hide" href="#" title="Hide navigation" class="m-col-t-1 m-hide-m m-text-left"></a>
+                    <div id="m-navbar-collapse" class="m-col-t-7 m-col-m-9 m-col-l-8 m-show-m m-left-m">
+                        <div class="m-row">
+                            <ol class="m-col-t-4 m-col-m-none">
+                                <li><a href="../about.html">About</a></li>
+                                <li><a href="../">Blog</a></li>
+                            </ol>
+                            <ol class="m-col-t-5 m-col-m-none">
+                                <li><a href="../talks.html">Talks</a></li>
+                                <li><a href="../resume.html">Resume</a></li>
+                                <li><a href="../contact.html">Contact</a></li>
+                            </ol>
+                            <ol class="m-col-t-3 m-col-m-none">
+                                <li><a href="https://github.com/neobrain" target="_blank"><img src="../images/github.png" style="vertical-align:middle" /></a></li>
+                                <li><a href="https://twitter.com/fail_cluez" target="_blank"><img src="../images/twitter.png" style="vertical-align:middle; " /></a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <a href="../" id="m-navbar-brand" style="text-align:right" class="m-col-t-3 m-col-s-4 m-col-m-3 m-col-l-2 m-text-right-t">Tony Wasserka</a>
+                </div>
             </div>
-          </form>
-        </div>
-      </div>
-    </section>
-</article>
-]]></description>
-    <pubDate>Sat, 04 Nov 2017 00:00:00 UT</pubDate>
-    <guid>https://neobrain.github.io/posts/2017-11-04-hello-world.html</guid>
-    <dc:creator>Tony Wasserka</dc:creator>
-</item>
-<item>
-    <title>C++Now 2018 Trip Report</title>
-    <link>https://neobrain.github.io/posts/2018-06-07-cppnow-trip-report.html</link>
-    <description><![CDATA[<article>
+        </nav></header>
+
+        <main role="main">
+          <article>
+            <div class="m-container m-container-inflatable">
+                <div class="m-row">
+                   <div class="m-col-l-10 m-push-l-1">
+                      <section>
+                      <!-- content -->
+                      
+                      <h1>C++Now 2018 Trip Report</h1>
+                      
+                      <article>
     <section class="header">
         <i><div class="m-text m-dim m-text-left">
             Posted on June  7, 2018
-            <span style="float:right;"><a href="/posts/2018-06-07-cppnow-trip-report.html#comments">0 comments</a></span>
+            <span style="float:right;"><a href="../posts/2018-06-07-cppnow-trip-report.html#comments">0 comments</a></span>
         </div></i>
     </section>
     <section>
@@ -108,7 +87,7 @@ I am a warning box!
 <p>If you thought metaprogramming was a solved problem, then this talk is proof that this is far from case: There’s still problems to be solved, and this new library is a promising step towards a solution!</p>
 <h4 id="optional-is-not-a-failure---phil-nash"><a href="https://cppnow2018.sched.com/event/EC7P/optional-is-not-a-failure">Option(al) is Not a Failure - Phil Nash</a></h4>
 <p>Phil presented ongoing work by Herb Sutter about a language extension to get concise and reliable error-handling without the overhead of exceptions in C++. To this end, Phil gave a very comprehensive overview of the existing error handling paradigms, their respective benefits and drawbacks, and ultimately presented the new, proposed approach.</p>
-<p>I don’t want to spoil any more of the talk since it was quite exciting to see where Phil’s build-up was going - I definitely recommend watching the talk hence, but if you’re in a rush you can look at <a href="Herb&#39;s%20paper">http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0709r0.pdf</a> directly. Suffice to say, it’s exciting that we may finally have a good solution for this very old problem that are suitable even in resource-constrained and timing-critical environments like embedded systems.</p>
+<p>I don’t want to spoil any more of the talk since it was quite exciting to see where Phil’s build-up was going - I definitely recommend watching the talk hence, but if you’re in a rush you can look at <a href="Herb's%20paper">http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0709r0.pdf</a> directly. Suffice to say, it’s exciting that we may finally have a good solution for this very old problem that are suitable even in resource-constrained and timing-critical environments like embedded systems.</p>
 <h4 id="debug-c-without-running---anastasia-kazakova"><a href="https://cppnow2018.sched.com/event/EC7g/debug-c-without-running">Debug C++ Without Running - Anastasia Kazakova</a></h4>
 <p>How do our IDEs keep pace with an ever-increasing set of language features in C++? Going beyond just autocompletion, Anastasia provided an overview of recently introduced C++ features contrasted with the tools for code inspection or for refactoring added in various IDEs to help the developer work with them. One example was type deduction using “auto”, which a good IDE provides the programmer with a way to tell the deduced type on request. Among other examples, CLion naturally is featured a lot (considering Anastasia works at JetBrains), but there are plenty of comparisons made with other IDEs like Visual Studio and Qt Creator.</p>
 <p>Personally, I rarely find myself thinking about these “mini”-tools a lot, but I agree having them is worthwhile. The talk raises a good point in that most new language features need to be acompanied with an equivalent IDE tool, and it’s certainly interesting to consider how our daily workflow would look like if every new language proposal had to come with proof-of-concept tooling to work with it.</p>
@@ -125,7 +104,7 @@ I am a warning box!
 <p>C++Now 2018 has been a very exciting and insightful conference for me, and if you hadn’t heard about it yet I hope this report got you curious about it. I certainly recommend going to C++Now if you get the chance to. Meanwhile, I’ll certainly do my best to make it next year again.</p>
 <p>See you then!</p>
     </section>
-    <hr style="width:100%"/>
+    <hr style="width:100%" />
     <section>
       <h3 id="comments">0 comments</h3>
       
@@ -133,7 +112,7 @@ I am a warning box!
     <section>
       <div class="m-row">
         <div class="m-col-l-10 m-push-l-1 m-frame">
-          <h3>Leave a comment&#8230;</h3>
+          <h3>Leave a comment…</h3>
           <form method="POST" action="#">
             <label><textarea disabled placeholder="Comment system is in the works - stay tuned!" name="fields[message]" style="width:100%; height:10rem"></textarea></label>
             <div class="m-row">
@@ -152,11 +131,24 @@ I am a warning box!
       </div>
     </section>
 </article>
-]]></description>
-    <pubDate>Thu, 07 Jun 2018 00:00:00 UT</pubDate>
-    <guid>https://neobrain.github.io/posts/2018-06-07-cppnow-trip-report.html</guid>
-    <dc:creator>Tony Wasserka</dc:creator>
-</item>
 
-    </channel>
-</rss>
+                      </section>
+                      <!-- /content -->
+                    </div>
+                </div>
+            </div>
+          </article>
+        </main>
+        <footer><nav>
+            <div class="m-container m-container-inflatable">
+                <div class="m-row">
+                    <div class="m-col-l-10 m-push-l-1 m-nopadt">
+                         © 2018 Tony Wasserka. Site powered by
+                        <a href="http://jaspervdj.be/hakyll" target="_blank">hakyll</a>
+                        and <a href="http://mcss.mosra.cz/" target="_blank">m.css</a>. Source code available on <a href="https://github.com/neobrain/neobrain.github.io" target="_blank">GitHub</a>.
+                    </div>
+                </div>
+            </div>
+        </nav></footer>
+    </body>
+</html>
