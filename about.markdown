@@ -13,7 +13,7 @@ I mainly worked on GPU emulation, having fixed a number of really [cool bugs](ht
 
 ### [PPSSPP, PSP](https://ppsspp.org)
 
-I implemented PPSSPP's [software renderer](https://github.com/hrydgard/ppsspp/tree/master/GPU/Software) as a reference backend. At a time where few games were rendering properly with the existing OpenGL renderer, the software renderer provided us with a useful tool to see what assumptions were breaking the other backend and consequently helped us understand what needs to be addressed next.
+I implemented PPSSPP's [software renderer](https://github.com/hrydgard/ppsspp/commits/74eafcab1afaf6c291e22e8ed69d3cf607ea7e16/GPU/Software) as a reference backend. At a time where few games were rendering properly with the existing OpenGL renderer, the software renderer provided us with a useful tool to see what assumptions were breaking the other backend and consequently helped us understand what needs to be addressed next.
 
 ### [Citra, 3DS](https://citra-emu.org)
 
