@@ -1,7 +1,7 @@
 ---
 title: About
 ---
-I'm a freelance software developer Berlin, Germany. I work on low-level software like operating systems (kernels and drivers alike) and firmware for embedded systems. My main interest is using strong type-safety to write software in resource-constrained and timing-sensitive applications with good performance with better robustness and correctness than with other approaches.
+I'm a freelance software developer based in Berlin, Germany. I work on low-level software like operating systems (kernels and drivers alike) and firmware for embedded systems. My main interest is using strong type-safety and zero-cost abstractions to write software for resource-constrained and timing-sensitive applications with good performance with better robustness and correctness than with other approaches. My tool of choice for this is usually C++, with Rust being an increasingly viable alternative.
 
 Even before my professional career I have been a long-term C++ enthusiast, having worked mostly on game console emulators. You can read more about my background on my [resume](/resources/resume.pdf).
 
