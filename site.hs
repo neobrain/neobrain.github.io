@@ -173,6 +173,10 @@ main = hakyll $ do
         route $ constRoute linkToResume
         compile copyFileCompiler
 
+    match "resources/*" $ do
+        route $ idRoute
+        compile copyFileCompiler
+
     create ["feed.rss"] $ do
       route idRoute
       compile $ do

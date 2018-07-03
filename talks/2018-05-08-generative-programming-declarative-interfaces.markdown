@@ -1,6 +1,8 @@
 ---
 title: "Generative Programming & Declarative Interfaces:<br>Emulating the Nintendo 3DS"
+video: https://www.youtube.com/watch?v=1qGksJWsfow
 location: "C++::Now"
+slides: /resources/cppnow_2018_tony_wasserka.pdf
 ---
 
 Console emulation needs to stem the difficult balance between optimizing code for stable frame rates and maintaining the complex logic required to emulate the given hardware - any subtle bug in this system easily manifests in a user-visible glitch. How can modern C++ help?
