@@ -4,7 +4,11 @@ title: Talks I've given
 
 $for(talks)$
     <section class="header">
-        <h2><a href="$url$" target="_blank">$title$</a></h2>
+        $if(video)$
+        <h2><a href="$video$" target="_blank">$title$</a></h2>
+        $else$
+        <h2>$title$</h2>
+        $endif$
         <i><div class="m-text m-dim m-text-left">
             $location$, $date$
         </div></i>
