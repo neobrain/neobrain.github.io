@@ -1,6 +1,6 @@
 ---
 title: "Generative Programming in Action: Emulating the 3DS"
-url: https://skillsmatter.com/skillscasts/11505-generative-programming-in-action-emulating-the-3ds
+video: https://skillsmatter.com/skillscasts/11505-generative-programming-in-action-emulating-the-3ds
 location: "C++::London"
 slides: "/talks/cpplondon_feb2018/"
 ---

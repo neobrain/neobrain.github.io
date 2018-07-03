@@ -1,6 +1,5 @@
 ---
 title: "Generative Programming & Declarative Interfaces:<br>Emulating the Nintendo 3DS"
-url: https://skillsmatter.com/skillscasts/11505-generative-programming-in-action-emulating-the-3ds
 location: "C++::Now"
 ---
 
